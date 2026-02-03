@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # Solana program builder
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - cargo-cache:/root/.cargo/registry
+      - solana-cache:/root/.local/share/solana
+    environment:
+      - RUST_BACKTRACE=1
+    command: anchor build
+
+  # Deploy to devnet
+  deploy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - cargo-cache:/root/.cargo/registry
+      - solana-cache:/root/.local/share/solana
+      - ~/.config/solana:/root/.config/solana:ro
+    environment:
+      - RUST_BACKTRACE=1
+    command: >
+      sh -c "anchor build && anchor deploy --provider.cluster devnet"
+
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - SOLANA_NETWORK=devnet
+      - PYTHONUNBUFFERED=1
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Frontend service
+  frontend:
+    image: node:20-slim
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+
+volumes:
+  cargo-cache:
+  solana-cache:
