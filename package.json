@@ -1,6 +1,6 @@
 {
     "name": "truth-chain",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Immutable document verification system on Solana blockchain",
     "scripts": {
         "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
