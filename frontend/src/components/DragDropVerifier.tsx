@@ -62,39 +62,43 @@ function DragDropVerifier() {
         <div className="verifier-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
             <AnimatePresence mode="wait">
                 {result.status === 'idle' || result.status === 'verifying' ? (
-                    <motion.div
-                        key="dropzone"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
+                    <div
+                        key="dropzone-root"
                         {...getRootProps()}
                         className={`dropzone ${isDragActive ? 'active' : ''}`}
                     >
-                        <input {...getInputProps()} />
-                        {result.status === 'verifying' ? (
-                            <div className="verifying-overlay" style={{ textAlign: 'center' }}>
-                                <motion.div
-                                    animate={{ rotate: 360 }}
-                                    transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                                    style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center' }}
-                                >
-                                    <FileSearch size={64} style={{ color: 'var(--color-accent)' }} />
-                                </motion.div>
-                                <h3 className="pulse">Consulting Solana Registry...</h3>
-                                <p style={{ color: 'var(--color-text-secondary)' }}>Computing SHA-256 Local Fingerprint</p>
-                            </div>
-                        ) : (
-                            <div style={{ textAlign: 'center' }}>
-                                <Upload className="dropzone-icon" size={64} style={{ marginBottom: '24px', opacity: 0.5 }} />
-                                <h3 className="dropzone-title">Drop investigative file here</h3>
-                                <p className="dropzone-subtitle" style={{ color: 'var(--color-text-secondary)' }}>or click to browse your local filesystem</p>
-                                <div style={{ marginTop: '24px', display: 'flex', gap: '8px', justifyContent: 'center' }}>
-                                    <span className="badge badge-cyan">PDF ONLY</span>
-                                    <span className="badge badge-cyan">MAX 500MB</span>
+                        <motion.div
+                            key="dropzone-motion"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                        >
+                            <input {...getInputProps()} />
+                            {result.status === 'verifying' ? (
+                                <div className="verifying-overlay" style={{ textAlign: 'center' }}>
+                                    <motion.div
+                                        animate={{ rotate: 360 }}
+                                        transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                                        style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center' }}
+                                    >
+                                        <FileSearch size={64} style={{ color: 'var(--color-accent)' }} />
+                                    </motion.div>
+                                    <h3 className="pulse">Consulting Solana Registry...</h3>
+                                    <p style={{ color: 'var(--color-text-secondary)' }}>Computing SHA-256 Local Fingerprint</p>
                                 </div>
-                            </div>
-                        )}
-                    </motion.div>
+                            ) : (
+                                <div style={{ textAlign: 'center' }}>
+                                    <Upload className="dropzone-icon" size={64} style={{ marginBottom: '24px', opacity: 0.5 }} />
+                                    <h3 className="dropzone-title">Drop investigative file here</h3>
+                                    <p className="dropzone-subtitle" style={{ color: 'var(--color-text-secondary)' }}>or click to browse your local filesystem</p>
+                                    <div style={{ marginTop: '24px', display: 'flex', gap: '8px', justifyContent: 'center' }}>
+                                        <span className="badge badge-cyan">PDF ONLY</span>
+                                        <span className="badge badge-cyan">MAX 500MB</span>
+                                    </div>
+                                </div>
+                            )}
+                        </motion.div>
+                    </div>
                 ) : (
                     <motion.div
                         key="result"
