@@ -6,9 +6,10 @@
         "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
         "dev:frontend": "npm run dev --prefix frontend",
         "dev:backend": "cd backend && uvicorn main:app --reload",
-        "build": "anchor build",
+        "build": "npm run build --prefix frontend",
+        "build:anchor": "anchor build",
         "test": "anchor test",
-        "deploy": "anchor deploy",
+        "deploy:anchor": "anchor deploy",
         "lint": "eslint . --ext .ts"
     },
     "dependencies": {
