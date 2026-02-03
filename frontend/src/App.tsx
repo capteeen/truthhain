@@ -86,8 +86,6 @@ function App() {
                                 <div style={{ display: 'grid', gap: '8px' }}>
                                     <span style={{ fontWeight: 600, fontSize: '14px', marginBottom: '8px' }}>Community</span>
                                     <a href="https://x.com/truthchainonsol?s=21" target="_blank" rel="noopener noreferrer" className="footer-link">X (Twitter)</a>
-                                    <a href="#" className="footer-link">Discord</a>
-                                    <a href="#" className="footer-link">Telegram</a>
                                 </div>
                             </div>
                         </div>
