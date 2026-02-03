@@ -5,7 +5,7 @@ import MetadataExplorer from './components/MetadataExplorer'
 import CATSTracker from './components/CATSTracker'
 import Documentation from './components/Documentation'
 import Analytics from './components/Analytics'
-import { Shield, Search, Database, FileText, ChevronRight, Github, ExternalLink } from 'lucide-react'
+import { Shield, Search, Database, FileText, ChevronRight, Github, ExternalLink, Twitter } from 'lucide-react'
 
 function App() {
     return (
@@ -38,7 +38,11 @@ function App() {
                         </nav>
 
                         <div className="header-actions">
-                            <a href="https://github.com/truthchain" className="btn btn-secondary" style={{ padding: '8px 16px' }}>
+                            <a href="https://x.com/truthchainonsol?s=21" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '8px 16px' }}>
+                                <Twitter size={18} />
+                                <span className="hide-mobile">X</span>
+                            </a>
+                            <a href="https://github.com/capteeen/truthhain" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '8px 16px' }}>
                                 <Github size={18} />
                                 <span className="hide-mobile">GitHub</span>
                             </a>
@@ -81,7 +85,7 @@ function App() {
                                 </div>
                                 <div style={{ display: 'grid', gap: '8px' }}>
                                     <span style={{ fontWeight: 600, fontSize: '14px', marginBottom: '8px' }}>Community</span>
-                                    <a href="https://twitter.com/truthchain" className="footer-link">Twitter</a>
+                                    <a href="https://x.com/truthchainonsol?s=21" target="_blank" rel="noopener noreferrer" className="footer-link">X (Twitter)</a>
                                     <a href="#" className="footer-link">Discord</a>
                                     <a href="#" className="footer-link">Telegram</a>
                                 </div>
